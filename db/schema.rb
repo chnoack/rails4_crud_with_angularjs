@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140818112518) do
 
-  create_table "addresses", force: true do |t|
+  create_table "addresses", force: :cascade do |t|
     t.string   "street1"
     t.string   "street2"
     t.string   "city"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140818112518) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
