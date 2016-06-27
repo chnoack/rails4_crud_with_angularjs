@@ -13,7 +13,6 @@ gem 'coffee-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-gem 'angular_rails_csrf'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -29,7 +28,10 @@ gem 'sdoc',          group: :doc
 #Use angular js
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'angular_rails_csrf'
+gem 'angular-rails-templates'
 gem 'responders'
+gem 'haml'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development

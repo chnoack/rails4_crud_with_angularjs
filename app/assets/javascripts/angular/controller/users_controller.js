@@ -1,4 +1,4 @@
-var myApp = angular.module('myapplication', ['ngRoute', 'ngResource']); 
+var myApp = angular.module('myapplication', ['ngRoute', 'ngResource', 'templates']);
 
 //Factory
 myApp.factory('Users', ['$resource',function($resource){
@@ -42,7 +42,7 @@ myApp.controller("UserUpdateCtr", ['$scope', '$resource', 'User', '$location', '
       });
     }
   };
-  
+
   $scope.addAddress = function(){
     $scope.user.addresses.push({street1: '', street2: '', city: '', state: '', country: '', zipcode: '' })
   }
@@ -91,15 +91,15 @@ myApp.controller("UserAddCtr", ['$scope', '$resource', 'Users', '$location', fun
 myApp.config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/users',{
-      templateUrl: '/templates/users/index.html',
+      templateUrl: 'users/index.html',
       controller: 'UserListCtr'
     });
     $routeProvider.when('/users/new', {
-      templateUrl: '/templates/users/new.html',
+      templateUrl: 'users/new.html',
       controller: 'UserAddCtr'
     });
     $routeProvider.when('/users/:id/edit', {
-      templateUrl: '/templates/users/edit.html',
+      templateUrl: 'users/edit.html',
       controller: "UserUpdateCtr"
     });
     $routeProvider.otherwise({
@@ -107,4 +107,3 @@ myApp.config([
     });
   }
 ]);
-

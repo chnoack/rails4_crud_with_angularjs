@@ -1,0 +1,60 @@
+.form-group{"ng-class" => "{'has-error' : submitted && userForm.first_name.$invalid}"}
+  %label.control-label.col-md-3
+    First name
+    %span.required *
+  .col-md-4
+    %input.form-control{:name => "first_name", "ng-model" => "user.first_name", :placeholder => "first name", :required => "", :type => "text"}/
+  %p.help-block{"ng-show" => " submitted && userForm.first_name.$invalid"} First name is required.
+.form-group{"ng-class" => "{'has-error' : submitted && userForm.last_name.$invalid}"}
+  %label.control-label.col-md-3
+    Last name
+    %span.required *
+  .col-md-4
+    %input.form-control{:name => "last_name", "ng-model" => "user.last_name", :placeholder => "last name", :required => "", :type => "text"}/
+  %p.help-block{"ng-show" => " submitted && userForm.last_name.$invalid"} Last name is required.
+.form-group{"ng-class" => "{'has-error' : submitted && userForm.email.$invalid}"}
+  %label.control-label.col-md-3
+    Email
+    %span.required *
+  .col-md-4
+    %input.form-control{:name => "email", "ng-model" => "user.email", :placeholder => "test@example.com", :required => "", :type => "email"}/
+  %p.help-block{"ng-show" => "submitted && userForm.email.$error.required"} Email is required.
+  %p.help-block{"ng-show" => "submitted && userForm.email.$error.email"} Enter valid email
+.form-group
+  %label.control-label.col-md-3 Phone
+  .col-md-4
+    %input.form-control{:name => "phone", "ng-model" => "user.phone", :placeholder => "9876543210", :type => "text"}/
+  %p.help-block{"ng-show" => "submitted && userForm.phone.$invalid"} Phone is required.
+%div{"ng-repeat" => "address in user.addresses"}
+  %div{"ng-hide" => "address._destroy"}
+    .form-group
+      %label.control-label.col-md-2 Address 1
+      .col-md-3
+        %input.form-control{"ng-model" => "address.street1", :placeholder => "Address 1", :type => "text"}/
+      %label.control-label.col-md-2 Address 2
+      .col-md-3
+        %input.form-control{"ng-model" => "address.street2", :placeholder => "Address 2", :type => "text"}/
+      .col-md-2
+        %a.btn.btn-xs.btn-danger{"ng-click" => "removeAddress($index, user)"} X
+    .form-group
+      %label.control-label.col-md-2 City
+      .col-md-3
+        %input.form-control{"ng-model" => "address.city", :placeholder => "Pune", :type => "text"}/
+      %label.control-label.col-md-2 State
+      .col-md-3
+        %input.form-control{"ng-model" => "address.state", :placeholder => "MH", :type => "text"}/
+    .form-group
+      %label.control-label.col-md-2 Country
+      .col-md-3
+        %input.form-control{"ng-model" => "address.country", :placeholder => "India", :type => "text"}/
+      %label.control-label.col-md-2 Zipcode
+      .col-md-3
+        %input.form-control{"ng-model" => "address.zipcode", :placeholder => "12345", :type => "text"}/
+    %hr/
+.form-group
+  .col-md-offset-12
+    %a.btn.btn-success.btn-xs{"ng-click" => "addAddress()"} + Add address
+.form-group
+  .pull-left
+    %a.btn.btn-default{:href => "/"} Back
+    %button.btn.btn-primary{"ng-click" => "submitted=true", :type => "submit"} Submit
