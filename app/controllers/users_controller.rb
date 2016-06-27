@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user.as_json, status: :ok
     else
-      render json: {user: @user.errors, status: :unprocessable_entity}
+      render json: {user: @user.errors, status: :unprocessable_entity}, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       render json: @user.as_json, status: :ok
     else
-      render json: {user: @user.errors, status: :unprocessable_entity}
+      render json: {user: @user.errors, status: :unprocessable_entity}, status: :unprocessable_entity
     end
   end
 

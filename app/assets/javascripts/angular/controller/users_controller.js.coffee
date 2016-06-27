@@ -1,5 +1,14 @@
 myApp = angular.module('myapplication', [ 'ngRoute', 'ngResource', 'templates' ])
 
+myApp.directive 'serverError', ->
+    restrict: 'A'
+    require: '?ngModel'
+    link: (scope, element, attrs, ctrl) ->
+      element.on 'change', ->
+        scope.$apply ->
+          ctrl.$setValidity('server', true)
+
+
 #Factory
 myApp.factory 'Users', [
   '$resource'
@@ -10,6 +19,7 @@ myApp.factory 'Users', [
         isArray: true
       create: method: 'POST'
 ]
+
 myApp.factory 'User', [
   '$resource'
   ($resource) ->
@@ -22,6 +32,7 @@ myApp.factory 'User', [
         method: 'DELETE'
         params: id: '@id'
 ]
+
 
 #Controller
 myApp.controller 'UserListCtr', [
@@ -39,11 +50,8 @@ myApp.controller 'UserListCtr', [
         User.delete { id: userId }, ->
           $scope.users = Users.query()
           $location.path '/'
-          return
-      return
-
-    return
 ]
+
 myApp.controller 'UserUpdateCtr', [
   '$scope'
   '$resource'
@@ -56,15 +64,16 @@ myApp.controller 'UserUpdateCtr', [
     $scope.update = ->
       if $scope.userForm.$valid
         User.update { id: $scope.user.id }, { user: $scope.user }, ((r) ->
-          if (r.status == 'unprocessable_entity')
-            $location.path '/users/new'
-          else
-            $location.path '/'
-          return
+          $location.path '/'
         ), (error) ->
           console.log error
-          return
-      return
+          angular.forEach error.data (errors, field) ->
+            console.log errors
+            console.log field
+            # tell the form that field is invalid
+            $scope.form[field].$setValidity('server', false)
+            # keep the error messages from the server
+            $scope.errors[field] = errors.join(', ')
 
     $scope.addAddress = ->
       $scope.user.addresses.push
@@ -74,7 +83,6 @@ myApp.controller 'UserUpdateCtr', [
         state: ''
         country: ''
         zipcode: ''
-      return
 
     $scope.removeAddress = (index, user) ->
       address = user.addresses[index]
@@ -82,10 +90,8 @@ myApp.controller 'UserUpdateCtr', [
         address._destroy = true
       else
         user.addresses.splice index, 1
-      return
-
-    return
 ]
+
 myApp.controller 'UserAddCtr', [
   '$scope'
   '$resource'
@@ -102,17 +108,16 @@ myApp.controller 'UserAddCtr', [
     } ]
 
     $scope.save = ->
+      $scope.errors = {};
       if $scope.userForm.$valid
         Users.create { user: $scope.user }, ((r) ->
-          if (r.status == 'unprocessable_entity')
-            $location.path '/users/new'
-          else
-            $location.path '/'
-          return
+          $location.path '/'
         ), (error) ->
-          console.log error
-          return
-      return
+          angular.forEach error.data.user, (errors, field) ->
+            # tell the form that field is invalid
+            $scope.userForm[field].$setValidity('server', false);
+            $scope.errors[field] = errors.join(', ');
+
 
     $scope.addAddress = ->
       $scope.user.addresses.push
@@ -122,7 +127,6 @@ myApp.controller 'UserAddCtr', [
         state: ''
         country: ''
         zipcode: ''
-      return
 
     $scope.removeAddress = (index, user) ->
       address = user.addresses[index]
@@ -130,10 +134,8 @@ myApp.controller 'UserAddCtr', [
         address._destroy = true
       else
         user.addresses.splice index, 1
-      return
-
-    return
 ]
+
 
 #Routes
 myApp.config [
@@ -150,5 +152,4 @@ myApp.config [
       templateUrl: 'users/edit.html'
       controller: 'UserUpdateCtr'
     $routeProvider.otherwise redirectTo: '/users'
-    return
 ]
