@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user.as_json, status: :ok
     else
-      render json: {user: @user.errors, status: :no_content}
+      render json: {user: @user.errors, status: 404}
     end
-  end      
+  end
 
   def show
     respond_with(@user.as_json)
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      render json: @user.as_json, status: :ok 
+      render json: @user.as_json, status: :ok
     else
       render json: {user: @user.errors, status: :unprocessable_entity}
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       params["user"]["addresses_attributes"] = params["user"]["addresses"]
       params["user"].delete("addresses")
     end
-    params.fetch(:user, {}).permit(:first_name, :last_name, :email, :phone, 
+    params.fetch(:user, {}).permit(:first_name, :last_name, :email, :phone,
                                    :addresses_attributes => [:id, :street1, :street2, :city, :state, :country, :zipcode, :_destroy, :user_id])
   end
 

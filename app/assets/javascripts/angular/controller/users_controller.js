@@ -20,7 +20,6 @@ myApp.factory('User', ['$resource', function($resource){
 myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'Users', 'User', '$location', function($scope, $http, $resource, Users, User, $location) {
 
   $scope.users = Users.query();
-
   $scope.deleteUser = function (userId) {
     if (confirm("Are you sure you want to delete this user?")){
       User.delete({ id: userId }, function(){
@@ -35,7 +34,8 @@ myApp.controller("UserUpdateCtr", ['$scope', '$resource', 'User', '$location', '
   $scope.user = User.get({id: $routeParams.id})
   $scope.update = function(){
     if ($scope.userForm.$valid){
-      User.update({id: $scope.user.id},{user: $scope.user},function(){
+      User.update({id: $scope.user.id},{user: $scope.user},function(r){
+        console.log(r.status)
         $location.path('/');
       }, function(error) {
         console.log(error)
@@ -62,9 +62,11 @@ myApp.controller("UserAddCtr", ['$scope', '$resource', 'Users', '$location', fun
   $scope.user = {addresses: [{street1: '', street2: '', city: '', state: '', country: '', zipcode: '' }]}
   $scope.save = function () {
     if ($scope.userForm.$valid){
-      Users.create({user: $scope.user}, function(){
+      Users.create({user: $scope.user}, function(r){
+        console.log(r.status)
         $location.path('/');
       }, function(error){
+        console.log('FEHLER');
         console.log(error)
       });
     }
@@ -84,7 +86,6 @@ myApp.controller("UserAddCtr", ['$scope', '$resource', 'Users', '$location', fun
   };
 
 }]);
-
 
 
 //Routes
