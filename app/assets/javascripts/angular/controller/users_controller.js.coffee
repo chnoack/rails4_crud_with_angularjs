@@ -1,8 +1,5 @@
-myApp = angular.module('myapplication', [
-  'ngRoute'
-  'ngResource'
-  'templates'
-])
+myApp = angular.module('myapplication', [ 'ngRoute', 'ngResource', 'templates' ])
+
 #Factory
 myApp.factory 'Users', [
   '$resource'
@@ -59,7 +56,6 @@ myApp.controller 'UserUpdateCtr', [
     $scope.update = ->
       if $scope.userForm.$valid
         User.update { id: $scope.user.id }, { user: $scope.user }, ((r) ->
-          console.log r.status
           if (r.status == 'unprocessable_entity')
             $location.path '/users/new'
           else
@@ -108,15 +104,12 @@ myApp.controller 'UserAddCtr', [
     $scope.save = ->
       if $scope.userForm.$valid
         Users.create { user: $scope.user }, ((r) ->
-          console.log r.status
           if (r.status == 'unprocessable_entity')
-            console.log 'Fehler'
             $location.path '/users/new'
           else
             $location.path '/'
           return
         ), (error) ->
-          console.log 'FEHLER'
           console.log error
           return
       return
