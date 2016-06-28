@@ -1,15 +1,11 @@
-<h3>Rails4 + AngularJS </h3>
+<h3>Rails4 + AngularJS 1.5</h3>
 
-Check demo app <a href="https://rails4-crud-with-angularjs.herokuapp.com">here</a>.
+ This is just a fork of https://github.com/kirandc/rails4_crud_with_angularjs very good example of putting together Rails 4 an AngularJS. I've forked it to match the example to my needs:
 
-1. CRUD example using Rails4 + AngularJS
+ * haml templates
+ * coffescript
+ * mixed client and server side validation
+ * use of Rails' I18N inside AngularJS
  
-   <p>In this app I given example of how to create CRUD operation using Rails4 with AngularJS.</p>
-
-2. Create nested form using AngularJS
-
- </p>When we need to create nested form in rails, then we used nested_form gem. But if you using AngularJS as frontend then you can't use that.</p>
-<p>When you want nested form to using AngularJS, you need to write your own code. In this app I given sample code for nested form.</p>
-
 <h3>License</h3>
 <p>This is released under the MIT license.</p>
