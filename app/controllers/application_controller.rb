@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def get_translations
-    I18n.backend.set(:translations)[:de].to_json
+  def self.get_translations
+    I18n.backend.get(:translations)[:de]
   end
 
 end

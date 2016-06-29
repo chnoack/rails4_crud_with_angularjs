@@ -1,14 +1,16 @@
 .form-group{"ng-class" => "{'has-error' : submitted && userForm.first_name.$invalid}"}
   %label.control-label.col-md-3
-    = User.human_attribute_name(:first_name)
-    %span.required *
+    = User.human_attribute_name(:first_name, {locale: I18n.default_locale})
+    - if User.required_attribute?(:first_name)
+      %span.required *
   .col-md-4
     %input.form-control{:name => "first_name", "ng-model" => "user.first_name", :placeholder => "first name", :required => "", :type => "text", "server-error" => ""}/
   %p.help-block{"ng-show" => " submitted && userForm.first_name.$invalid"} First name is required.
 .form-group{"ng-class" => "{'has-error' : submitted && userForm.last_name.$invalid}"}
   %label.control-label.col-md-3
-    Last name
-    %span.required *
+    = User.human_attribute_name(:last_name, {locale: I18n.default_locale})
+    - if User.required_attribute?(:last_name)
+      %span.required *
   .col-md-4
     %input.form-control{:name => "last_name", "ng-model" => "user.last_name", :placeholder => "last name", :required => "", :type => "text", "server-error" => ""}/
   %p.help-block{"ng-show" => "submitted && userForm.last_name.$error.required"} Last name is required.
@@ -18,14 +20,16 @@
 
 .form-group{"ng-class" => "{'has-error' : submitted && userForm.email.$invalid}"}
   %label.control-label.col-md-3
-    Email
-    %span.required *
+    = User.human_attribute_name(:email, {locale: I18n.default_locale})
+    - if User.required_attribute?(:email)
+      %span.required *
   .col-md-4
     %input.form-control{:name => "email", "ng-model" => "user.email", :placeholder => "test@example.com", :required => "", :type => "email", "server-error" => ""}/
   %p.help-block{"ng-show" => "submitted && userForm.email.$error.required"} Email is required.
   %p.help-block{"ng-show" => "submitted && userForm.email.$error.email"} Enter valid email
 .form-group
-  %label.control-label.col-md-3 Phone
+  %label.control-label.col-md-3
+    = User.human_attribute_name(:phone, {locale: I18n.default_locale})
   .col-md-4
     %input.form-control{:name => "phone", "ng-model" => "user.phone", :placeholder => "9876543210", :type => "text", "server-error" => ""}/
   %p.help-block{"ng-show" => "submitted && userForm.phone.$invalid"} Phone is required.
