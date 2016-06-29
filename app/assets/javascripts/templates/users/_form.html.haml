@@ -1,6 +1,6 @@
 .form-group{"ng-class" => "{'has-error' : submitted && userForm.first_name.$invalid}"}
   %label.control-label.col-md-3
-    First name
+    = User.human_attribute_name(:first_name)
     %span.required *
   .col-md-4
     %input.form-control{:name => "first_name", "ng-model" => "user.first_name", :placeholder => "first name", :required => "", :type => "text", "server-error" => ""}/
