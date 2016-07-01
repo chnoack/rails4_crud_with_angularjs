@@ -1,6 +1,6 @@
-myApp = angular.module('myapplication', [ 'ngRoute', 'ngResource', 'templates' ])
+usersApp = angular.module('users_app', [ 'ngRoute', 'ngResource', 'templates' ])
 
-myApp.directive 'serverError', ->
+usersApp.directive 'serverError', ->
     restrict: 'A'
     require: '?ngModel'
     link: (scope, element, attrs, ctrl) ->
@@ -10,7 +10,7 @@ myApp.directive 'serverError', ->
 
 
 #Factory
-myApp.factory 'Users', [
+usersApp.factory 'Users', [
   '$resource'
   ($resource) ->
     $resource '/users.json', {},
@@ -20,7 +20,7 @@ myApp.factory 'Users', [
       create: method: 'POST'
 ]
 
-myApp.factory 'User', [
+usersApp.factory 'User', [
   '$resource'
   ($resource) ->
     $resource '/users/:id.json', {},
@@ -35,7 +35,7 @@ myApp.factory 'User', [
 
 
 #Controller
-myApp.controller 'UserListCtr', [
+usersApp.controller 'UserListCtr', [
   '$scope'
   '$http'
   '$resource'
@@ -52,7 +52,7 @@ myApp.controller 'UserListCtr', [
           $location.path '/'
 ]
 
-myApp.controller 'UserUpdateCtr', [
+usersApp.controller 'UserUpdateCtr', [
   '$scope'
   '$resource'
   'User'
@@ -92,7 +92,7 @@ myApp.controller 'UserUpdateCtr', [
         user.addresses.splice index, 1
 ]
 
-myApp.controller 'UserAddCtr', [
+usersApp.controller 'UserAddCtr', [
   '$scope'
   '$resource'
   'Users'
@@ -138,7 +138,7 @@ myApp.controller 'UserAddCtr', [
 
 
 #Routes
-myApp.config [
+usersApp.config [
   '$routeProvider'
   '$locationProvider'
   ($routeProvider, $locationProvider) ->
