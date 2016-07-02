@@ -38,7 +38,5 @@ vendor/cache/*
 db/Datenbankabzuege/Produktionsdaten
 .sass-cache
 *bpv*.tar.gz
-config/database.yml
-config/database.yml.remote
 public/api/*
 public/api-docs.json

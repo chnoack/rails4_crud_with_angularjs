@@ -19,7 +19,3 @@ development:
 test:
   <<: *default
   database: db/test_angular
-
-production:
-  <<: *default
-  database: db/pro_angular
