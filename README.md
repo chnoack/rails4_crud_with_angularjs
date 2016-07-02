@@ -9,7 +9,7 @@
  * use Rails simple form views and AngularJS views in one app
  * use reusable Angular directives for input fields
 
-Not all of theese targets have been achived yet. By now we're working at item 5.
+Not all of theese targets have been achived yet. By now we're working at item 6.
 
 The app contains an _Account_ model with server-side generated standard Rails Simple Form UI. There is also a _User_ model with a client-side AngularJS UI. Setting up your application this way enables you to use easy to build Simple Form UI for most of your views and AngularJS UI for dynamic views you would otherwise use JQuery for.
 
