@@ -1,5 +1,11 @@
 de:
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            last_name:
+              too_short: Must have a least 2 characters
     models:
       user:
         one: Anwender
@@ -11,4 +17,4 @@ de:
         email: E-Mail
         phone: Telefonnr.
   user:
-    create_new_user: Neuen Anwender anlegen        
+    create_new_user: Neuen Anwender anlegen

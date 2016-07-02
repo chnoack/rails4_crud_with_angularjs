@@ -1,13 +1,4 @@
-usersApp = angular.module('users_app', [ 'ngRoute', 'ngResource', 'templates' ])
-
-usersApp.directive 'serverError', ->
-    restrict: 'A'
-    require: '?ngModel'
-    link: (scope, element, attrs, ctrl) ->
-      element.on 'change', ->
-        scope.$apply ->
-          ctrl.$setValidity('server', true)
-
+usersApp = angular.module('users_app', [ 'ngRoute', 'ngResource', 'templates' ,'agile_module' ])
 
 #Factory
 usersApp.factory 'Users', [
