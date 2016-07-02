@@ -1,0 +1,20 @@
+= simple_form_for @account do |f|
+  - if @account.errors.any?
+    .row
+      .col-xs-12
+        #error_explanation
+          %h2
+            = pluralize(@account.errors.count, "error")
+            prohibited this account from being saved:
+          %ul
+            - @account.errors.full_messages.each do |message|
+              %li= message
+  .row
+    .col-xs-12
+      = f.input :number
+    .col-xs-12
+      = f.input :balance
+    .col-xs-12
+      = f.association :user, collection: User.order('last_name ASC')
+    .col-xs-12
+      = f.submit

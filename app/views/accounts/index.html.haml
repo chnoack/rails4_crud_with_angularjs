@@ -1,0 +1,28 @@
+%p#notice= notice
+%h1 Listing Accounts
+.row
+  .col-xs-12
+    = link_to new_account_path, { class: "btn btn-primary action-button" } do
+      %span.glyphicon.glyphicon-plus
+      Create an Account
+    = link_to users_path, { class: "btn btn-default action-button" } do
+      %span.glyphicon.glyphicon-user
+      Users
+
+.row
+  .col-xs-12
+    %table.table.table-striped.table-fixed
+      %thead
+        %tr
+          %th.col-xs-6.col-md3 Number
+          %th.col-xs-6.col-md3 Balance
+          %th.col-xs-6.col-md3 User
+          %th.col-xs-6.col-md3{:colspan => "2"}
+      %tbody
+        - @accounts.each do |account|
+          %tr
+            %td= link_to account.number, account
+            %td= number_to_currency(account.balance)
+            %td= account.user_id
+            %td= link_to 'Edit', edit_account_path(account)
+            %td= link_to 'Remove', account, method: :delete, data: { confirm: 'Are you sure?' }

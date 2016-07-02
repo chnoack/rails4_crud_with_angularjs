@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Number:
+  = @account.number
+%p
+  %strong Balance:
+  = @account.balance
+%p
+  %strong User:
+  = @account.user_id
+= link_to 'Edit', edit_account_path(@account)
+|
+\#{link_to 'Back', accounts_path}

@@ -2,7 +2,10 @@
 .row
   .col-md-12
     %a.btn.btn-primary{:href => "#/users/new"}
+      %span.glyphicon.glyphicon-plus
       Create a user
+    %a.btn.btn-default{:href => "/accounts"}
+      Accounts
     %h3.block Users
     %table.table.table-striped
       %tr
@@ -10,7 +13,7 @@
         %th Last Name
         %th Email
         %th Phone
-        %th
+        %th{:colspan => "2"}
       %tr{"ng-hide" => "users.length"}
         %td{:colspan => "5"} No users found, Please create one.
       %tr{"ng-repeat" => "user in users", "ng-show" => "users.length"}
@@ -20,5 +23,5 @@
         %td {{user.phone}}
         %td
           %a{:href => "#/users/{{user.id}}/edit"} Edit
-          |
+        %td
           %a{:href => "", "ng-click" => "deleteUser(user.id)"} Remove

@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
    self.validators_on(attribute).map(&:class).include?(ActiveRecord::Validations::PresenceValidator)
   end
 
+  def name
+    [self.try(:last_name), self.try(:first_name)].join(', ')
+  end
+
 end
